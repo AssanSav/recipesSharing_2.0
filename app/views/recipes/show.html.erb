@@ -1,6 +1,11 @@
 <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
+  <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<h2>Category Name: <%= @recipe.category.name %></h2>
+<h2><%= @recipe.category.name %></h2>
 <h3>Name: <%= @recipe.name %> </h3>
+
+<%= link_to "New Recipe", new_recipe_path %> <br>
+<%= link_to "Back", recipes_path %> <br>
+<%= link_to "Edit", edit_recipe_path(@recipe) %> <br>
+<%= link_to "Delete", recipe_path, method: :delete, data: {confirm: "Are you sure?" } %> <br>

@@ -1,0 +1,10 @@
+<h1>Recipes Box</h1>
+
+<% @recipes.each do |category, recipes| %> 
+  <h2><%= category.name if category %></h2>
+  <% recipes.each do |recipe| %>
+    <p>
+      <%= link_to recipe.name, recipe_path(recipe) %>
+    </p>
+  <% end %>
+<% end %>

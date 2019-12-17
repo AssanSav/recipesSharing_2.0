@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.all  
+    @recipes = Recipe.list_by_category  
   end 
 
   def new 
@@ -27,22 +27,24 @@ class RecipesController < ApplicationController
 
   def update 
     if @recipe.update(recipe_params)
-      redirect_to reccipe_path(@recipe)
+      redirect_to recipe_path(@recipe)
       flash[:message] = "Recipe Successfully Updated" 
     else 
       render :edit 
     end 
   end 
 
-  def destroy 
-    @recipe.destroy
-    redirect_to root_path
+  def destroy  
+    if @recipe
+      @recipe.destroy
+    redirect_to root_path, notice: "Successfully deleted recipe"
+    end
   end 
 
   private 
 
   def find_recipe 
-    @recipe = Recipe.find_by(params[:id])
+    @recipe = Recipe.find(params[:id])
   end 
 
   def recipe_params

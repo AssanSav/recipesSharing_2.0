@@ -26,20 +26,27 @@ class RecipesController < ApplicationController
   end 
 
   def update 
+    if @recipe.update(recipe_params)
+      redirect_to reccipe_path(@recipe)
+      flash[:message] = "Recipe Successfully Updated" 
+    else 
+      render :edit 
+    end 
   end 
 
   def destroy 
+    @recipe.destroy
+    redirect_to root_path
   end 
 
   private 
 
   def find_recipe 
-    #binding.pry
     @recipe = Recipe.find_by(params[:id])
   end 
 
   def recipe_params
-    params.require(:recipe).permit(:name)
+    params.require(:recipe).permit(:name, :category_id)
   end 
 
 end

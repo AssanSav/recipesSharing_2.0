@@ -2,6 +2,10 @@
 
 <%= form_for @recipe do |f| %>
     <p>
+        <%= label_tag "Pick a Category" %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "Select a Category" %>
+    </p>
+    <p>
         <%= f.label :name %>
         <%= f.text_field :name %>
     </p>

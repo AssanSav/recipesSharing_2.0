@@ -1,5 +1,6 @@
 class Recipe < ApplicationRecord
 	belongs_to :category 
+	has_many :comments
 
 	validates :name, presence: true, uniqueness: true 
 	

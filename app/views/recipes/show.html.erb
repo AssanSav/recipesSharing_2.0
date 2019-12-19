@@ -5,6 +5,19 @@
 <h2><%= @recipe.category.name %></h2>
 <h3>Name: <%= @recipe.name %> </h3>
 
+<% @recipe.comments.each do |comment| %>
+  <p>
+    <%= comment.content %>
+  </p>
+  <%= link_to "Edit Comment", edit_recipe_comment_path(comment) %>
+  <%= link_to "Delete Comment", comment_path, method: :delete, data: {confirm: "Are you sure?" } %>
+<% end %>
+
+<%= form_for [@recipe, Comment.new] do |f| %> 
+  <%= f.text_area :content %> 
+  <%= f.submit "Add Comment" %>
+<% end %>
+
 <%= link_to "New Recipe", new_recipe_path %> <br>
 <%= link_to "Back", recipes_path %> <br>
 <%= link_to "Edit", edit_recipe_path(@recipe) %> <br>

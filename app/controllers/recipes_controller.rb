@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show, :index]
 
   def index
     @recipes = Recipe.list_by_category  
@@ -10,10 +11,10 @@ class RecipesController < ApplicationController
   end 
 
   def create 
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
-      flash[:message] = "Recipe Successfully Created"  
-      redirect_to recipe_path(@recipe) 
+      @recipe
+      redirect_to recipe_path(@recipe), notice: "Recipe Successfully Created" 
     else 
       render :new 
     end 
@@ -27,8 +28,7 @@ class RecipesController < ApplicationController
 
   def update 
     if @recipe.update(recipe_params) 
-      flash[:message] = "Recipe Successfully Updated" 
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_path(@recipe), notice: "Recipe Successfully Updated" 
     else 
       render :edit 
     end 
@@ -37,7 +37,7 @@ class RecipesController < ApplicationController
   def destroy  
     if @recipe
       @recipe.destroy
-      redirect_to root_path, flash[:message] "Successfully deleted recipe"
+      redirect_to recipes_path, notice: "Successfully deleted recipe"
     end
   end 
   

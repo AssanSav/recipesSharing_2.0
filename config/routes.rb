@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :recipe_ingredients
+  resources :ingredients
   devise_for :users
   root to: 'page#home'
   resources :comments

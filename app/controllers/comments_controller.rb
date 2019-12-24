@@ -1,19 +1,16 @@
 class CommentsController < ApplicationController
   before_action :find_comment, only: [:edit, :update, :destroy]
-
-  def new 
-    @comment = Comment.new 
-  end 
+  before_action :authenticate_user!
   
   def create 
-    @recipe = Recipe.find_by(params[:recipe_id]) 
-    if @recipe
+    @recipe = Recipe.find_by(id: params[:recipe_id]) 
+    if @recipe  
       @comment = current_user.comments.build(comment_params)
       @comment.recipe_id = @recipe.id
       @comment.save 
-      redirect_to recipe_path(@recipe), notice: "Comment Successfully Created"
-    else 
-      render :new 
+      flash[:message] = "Comment Successfully Created!" 
+      flash[:message] = "Comment Can't Be left Blank!" if !@comment.save
+      redirect_to recipe_path(@recipe)
     end 
   end
 

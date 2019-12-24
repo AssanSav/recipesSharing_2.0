@@ -2,9 +2,11 @@
 
 <% @recipes.each do |category, recipes| %> 
   <h2><%= category.name if category %></h2>
-  <% recipes.each do |recipe| %>
-    <p>
-      <%= link_to recipe.name, recipe_path(recipe) %>
-    </p>
-  <% end %>
+  <ol>
+    <% recipes.each do |recipe| %>
+      <p>
+        <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+      </p>
+    <% end %>
+  </ol>
 <% end %>

@@ -3,13 +3,14 @@
 <h1>Create A New Recipe</h1>
 
 <%= form_for @recipe do |f| %>
-	<p>
+  <p>
     <%= label_tag "Pick a Category" %>
     <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "Select a Category" %>
-	</p>
-	<p>
+  </p>
+    
+	<div class="field<%= ' field_with_errors' if @recipe.errors[:name].any? %>">
 		<%= f.label :name %>
 		<%= f.text_field :name %>
-	</p>
+  </div> <br>
 	<%= f.submit %>
 <% end %>

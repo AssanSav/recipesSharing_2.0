@@ -13,9 +13,11 @@
 
 
 
-<%= form_for [@recipe, Comment.new] do |f| %> 
-  <%= f.text_area :content %> 
-  <%= f.submit "Add Comment" %>
+<%= form_for [@recipe, Comment.new] do |f| %>
+  <div class="field<%= ' field_with_errors' if Comment.new.errors[:name].any? %>">
+    <%= f.text_area :content %> 
+    <%= f.submit "Add Comment" %>
+  </div>
 <% end %>
 
 <% if @recipe.user == current_user %>

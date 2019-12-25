@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
   private 
   
   def find_recipe 
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find_by(id: params[:id])
   end 
   
   def recipe_params

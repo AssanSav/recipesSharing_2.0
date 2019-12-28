@@ -8,7 +8,7 @@ class Recipe < ApplicationRecord
 	validates :name, presence: true, uniqueness: {:scope => [:user_id, :category_id]}
 	before_validation :name_capitalizer
 
-	accepts_nested_attributes_for :recipe_ingredients#, reject_if: proc {|attr| attr["amount"].blank? && new_record}
+	accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank
 
 	
 	def self.list_by_category 

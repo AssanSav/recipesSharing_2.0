@@ -1,8 +1,8 @@
 <h2><%= @recipe.category.name %></h2>
-<h3>Recipe: <%= @recipe.name %> </h3>
-
-
-<% @recipe.recipe_ingredients.each do |rec_ing| %>
+<h3><%= @recipe.name %> </h3>
+<h4>Ingredients</h4>
+<ul>
+    <% @recipe.recipe_ingredients.each do |rec_ing| %>
     <table>
         <thead>
             <th><%= rec_ing.ingredient.name %></th>
@@ -11,9 +11,10 @@
             <td><%= rec_ing.amount %></td>
         </tbody>
     </table>
-<% end %>
+    <% end %>
+</ul>
 
-
+<h3>Comments</h3>
 <% @recipe.comments.each do |comment| %>
     <br><strong><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %>
     <% if comment.user == current_user %>
@@ -21,8 +22,6 @@
         <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?" } %>
     <% end %> <br>
 <% end %>
-
-
 
 <%= form_for [@recipe, Comment.new] do |f| %>
     <%= f.text_area :content %>

@@ -49,7 +49,6 @@ class RecipesController < ApplicationController
   end 
   
   def recipe_params
-    binding.pry
     params.require(:recipe).permit(:name, :category_id, :recipe_ingredients_attributes => [:amount, :ingredient_attributes => [:name]])
   end 
 

@@ -11,14 +11,16 @@
 
 <body>
     <%= render 'layouts/alerts' %>
-
-    <% if current_user %>
+    <nav>
+      <% if current_user %>
         <%= link_to "Log out", destroy_user_session_path, method: :delete %>
         <%= link_to "Recipes", recipes_path %>
-    <% else %>
-        <%= link_to "Sign up", new_user_registration_path %>
-        <%= link_to "Log in", new_user_session_path %>
-    <% end %>
+      <% else %>
+          <%= link_to "Sign up", new_user_registration_path %>
+          <%= link_to "Log in", new_user_session_path %>
+      <% end %>
+    </nav>
+    
 
     <%= yield %>
 </body>

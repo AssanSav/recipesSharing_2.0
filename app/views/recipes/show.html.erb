@@ -1,6 +1,7 @@
 <h2><%= @recipe.category.name %></h2>
 <h3><%= @recipe.name %> </h3>
-<h4>Ingredients</h4>
+
+<h3>Ingredients</h3>
 <ul>
     <% @recipe.recipe_ingredients.each do |rec_ing| %>
     <table>
@@ -14,9 +15,16 @@
     <% end %>
 </ul>
 
+<h3>Cooking Directions</h3>
+<% @recipe.directions.each do |dir| %> 
+<p>
+    <%= dir.cooking_process %> 
+</p>
+<% end %>
+
 <h3>Comments</h3>
 <% @recipe.comments.each do |comment| %>
-    <br><strong><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %>
+    <strong><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %>
     <% if comment.user == current_user %>
         <%= link_to "Edit", edit_comment_path(comment) %>
         <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?" } %>
@@ -29,11 +37,9 @@
 <% end %>
 
 <% if @recipe.user == current_user %>
-    <%= link_to "New Recipe", new_recipe_path %> <br>
     <%= link_to "Back", recipes_path %> <br>
     <%= link_to "Edit", edit_recipe_path(@recipe) %> <br>
     <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" } %> <br>
 <% else %>
-    <%= link_to "New Recipe", new_recipe_path %> <br>
     <%= link_to "Back", recipes_path %> <br>
 <% end %>

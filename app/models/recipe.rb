@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
 	belongs_to :user
-	belongs_to :category 
+	belongs_to :category
+	has_many :directions 
 	has_many :comments
 	has_many :recipe_ingredients
 	has_many :ingredients, through: :recipe_ingredients
@@ -9,7 +10,7 @@ class Recipe < ApplicationRecord
 	before_validation :name_capitalizer
 
 	accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank
-
+	accepts_nested_attributes_for :directions, reject_if: :all_blank
 	
 	def self.list_by_category 
 		self.all.group_by(&:category)

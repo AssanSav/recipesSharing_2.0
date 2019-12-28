@@ -24,5 +24,12 @@
                 </p>
             <% end %>
     </fieldset>
+    <%= f.fields_for :directions, @recipe.directions.build do |dir_builder| %>
+        <%= dir_builder.label :cooking_process, cols: 30, rows: 2 %> <br>
+        <%= dir_builder.text_area :cooking_process %>
+    <% end %> <br>
+    <br>
     <%= f.submit %>
 <% end %>
+
+<%= link_to "Back", recipes_path %> <br>

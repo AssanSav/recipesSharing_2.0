@@ -8,12 +8,15 @@ class RecipesController < ApplicationController
 
   def new 
     @recipe = Recipe.new 
+    4.times do 
+        @recipe.recipe_ingredients.build.build_ingredient
+    end
   end 
 
   def create 
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
-      redirect_to recipe_path(@recipe), notice: "Recipe Successfully Created" 
+        redirect_to recipe_path(@recipe), notice: "Recipe Successfully Created" 
     else 
       render :new 
     end 
@@ -46,7 +49,8 @@ class RecipesController < ApplicationController
   end 
   
   def recipe_params
-    params.require(:recipe).permit(:name, :category_id)
+    binding.pry
+    params.require(:recipe).permit(:name, :category_id, :recipe_ingredients_attributes => [:amount, :ingredient_attributes => [:name]])
   end 
 
 end

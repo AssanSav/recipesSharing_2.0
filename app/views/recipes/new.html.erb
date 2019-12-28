@@ -3,14 +3,26 @@
 <h1>Create A New Recipe</h1>
 
 <%= form_for @recipe do |f| %>
-  <p>
-    <%= label_tag "Pick a Category" %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "Select a Category" %>
-  </p>
-    
-	<div class="field<%= ' field_with_errors' if @recipe.errors[:name].any? %>">
-		<%= f.label :name %>
-		<%= f.text_field :name %>
-  </div> <br>
-	<%= f.submit %>
+    <p>
+        <%= label_tag "Pick a Category" %> <br>
+        <%= f.collection_select :category_id, Category.all, :id, :name %>
+    </p>
+    <p>
+        <%= f.label :name %> <br>
+        <%= f.text_field :name %>
+    </p>
+    <fieldset>
+        <legend>Ingredients</legend>
+            <%= f.fields_for :recipe_ingredients do |rec_ing_builder| %>
+                <%= rec_ing_builder.fields_for :ingredient do |ingr_builder| %>
+                <p>
+                    <%= ingr_builder.text_field :name, placeholder: "Ingredient Name" %>
+                </p>
+                <% end %>
+                <p>
+                    <%= rec_ing_builder.number_field :amount, step: :any, placeholder: "Amount" %>
+                </p>
+            <% end %>
+    </fieldset>
+    <%= f.submit %>
 <% end %>

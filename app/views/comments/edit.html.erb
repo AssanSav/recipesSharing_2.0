@@ -1,6 +1,8 @@
+<%= render "errors" %>
+
 <h1>Edit</h1>
 
-<%= form_for [@recipe, @comment] do |f| %> 
-  <%= f.text_area :content %> <br>
-  <%= f.submit %> 
-<% end %> 
+<%= form_for [@recipe, @comment] do |f| %>
+    <%= f.text_area :content %> <br>
+    <%= f.submit %>
+<% end %>

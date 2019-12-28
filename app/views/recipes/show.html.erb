@@ -1,31 +1,40 @@
 <h2><%= @recipe.category.name %></h2>
 <h3>Recipe: <%= @recipe.name %> </h3>
 
-<% @recipe.comments.each do |comment| %>
-    <br><strong><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %> 
-  
-    <% if comment.user == current_user %>
-    <%= link_to "Edit", edit_comment_path(comment) %> 
-    <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?" } %>
-  <% end %> <br>
 
+<% @recipe.recipe_ingredients.each do |rec_ing| %>
+    <table>
+        <thead>
+            <th><%= rec_ing.ingredient.name %></th>
+        </thead>
+        <tbody>
+            <td><%= rec_ing.amount %></td>
+        </tbody>
+    </table>
+<% end %>
+
+
+<% @recipe.comments.each do |comment| %>
+    <br><strong><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %>
+    <% if comment.user == current_user %>
+        <%= link_to "Edit", edit_comment_path(comment) %>
+        <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?" } %>
+    <% end %> <br>
 <% end %>
 
 
 
 <%= form_for [@recipe, Comment.new] do |f| %>
-  <div class="field<%= ' field_with_errors' if Comment.new.errors[:name].any? %>">
-    <%= f.text_area :content %> 
+    <%= f.text_area :content %>
     <%= f.submit "Add Comment" %>
-  </div>
 <% end %>
 
 <% if @recipe.user == current_user %>
-  <%= link_to "New Recipe", new_recipe_path %> <br>
-  <%= link_to "Back", recipes_path %> <br>
-  <%= link_to "Edit", edit_recipe_path(@recipe) %> <br>
-  <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" } %> <br>
+    <%= link_to "New Recipe", new_recipe_path %> <br>
+    <%= link_to "Back", recipes_path %> <br>
+    <%= link_to "Edit", edit_recipe_path(@recipe) %> <br>
+    <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" } %> <br>
 <% else %>
-  <%= link_to "New Recipe", new_recipe_path %> <br>
-  <%= link_to "Back", recipes_path %> <br>
+    <%= link_to "New Recipe", new_recipe_path %> <br>
+    <%= link_to "Back", recipes_path %> <br>
 <% end %>

@@ -1,12 +1,13 @@
 <h1>Recipes Box</h1>
 
-<% @recipes.each do |category, recipes| %> 
-  <h2><%= category.name if category %></h2>
-  <ol>
-    <% recipes.each do |recipe| %>
-      <p>
-        <li><%= link_to recipe.name, recipe_path(recipe) %></li>
-      </p>
-    <% end %>
-  </ol>
+<% @recipes.each do |category, recipes| %>
+    <h2><%= category.name if category %></h2>
+    <h3><%= pluralize(category.recipes.count, "Recipe") %></h3>
+    <ul>
+        <% recipes.each do |recipe| %>
+            <p>
+                <li><%= link_to recipe.name, recipe_path(recipe) %> <strong>By: <%= recipe.user.username %></strong></li>
+            </p>
+        <% end %>
+    </ul>
 <% end %>

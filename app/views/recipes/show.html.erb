@@ -1,6 +1,8 @@
 <h2><%= @recipe.category.name %></h2>
 <h3><%= @recipe.name %> </h3>
-
+<p>
+    Created by: <%= @recipe.user.username %> on <%= created_date_of @recipe %>
+</p>
 <h3>Ingredients</h3>
 <ul>
     <% @recipe.recipe_ingredients.each do |rec_ing| %>

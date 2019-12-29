@@ -6,7 +6,7 @@
     <ul>
         <% recipes.each do |recipe| %>
             <p>
-                <li><%= link_to recipe.name, recipe_path(recipe) %> <strong>By: <%= recipe.user.username %></strong></li>
+                <li><%= link_to recipe.name, recipe_path(recipe) %></li>
             </p>
         <% end %>
     </ul>

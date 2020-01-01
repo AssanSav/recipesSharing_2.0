@@ -13,7 +13,7 @@ class Recipe < ApplicationRecord
 	accepts_nested_attributes_for :directions, reject_if: :all_blank
 	
 	def self.list_by_category 
-		self.all.group_by(&:category)
+		all.group_by(&:category)
 	end
 
 	private 

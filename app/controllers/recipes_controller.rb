@@ -16,16 +16,18 @@ class RecipesController < ApplicationController
   def create 
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
-        redirect_to recipe_path(@recipe), notice: "Recipe Successfully Created" 
+        redirect_to recipe_path(@recipe.id), notice: "Recipe Successfully Created" 
     else 
       render :new 
     end 
   end 
 
-  def show 
+  def show
+    redirect_to recipes_path, notice: "Record not found!"  if @recipe.nil?
   end 
 
   def edit 
+    redirect_to recipes_path, notice: "Record not found!"   if @recipe.nil?
   end 
 
   def update 
@@ -45,7 +47,7 @@ class RecipesController < ApplicationController
   private 
   
   def find_recipe 
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find_by(id: params[:id])
   end 
   
   def recipe_params

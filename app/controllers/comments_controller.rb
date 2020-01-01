@@ -3,18 +3,18 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   
   def create 
-    @recipe = Recipe.find_by(id: params[:recipe_id]) 
-    if @recipe  
+      @recipe = Recipe.find_by(id: params[:recipe_id])  
       @comment = current_user.comments.build(comment_params)
       @comment.recipe_id = @recipe.id
-      @comment.save 
-      flash[:message] = "Comment Successfully Created!" 
-      flash[:message] = "Comment Can't Be left Blank!" if !@comment.save
-      redirect_to recipe_path(@recipe)
-    end 
+      if @comment.save 
+        redirect_to recipe_path(@comment.recipe_id)
+      else
+        render "recipes/show"
+      end
   end
 
   def edit
+      redirect_to recipes_path, notice: "Record not found!" if @comment.nil?
   end 
   
   def update    
@@ -39,6 +39,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :recipe_id)
   end 
 end

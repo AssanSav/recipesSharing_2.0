@@ -1,4 +1,4 @@
-<h1>Recipes Box</h1>
+
 
 <% @recipes.each do |category, recipes| %>
     <h2><%= category.name if category %></h2>
@@ -6,7 +6,8 @@
     <ul>
         <% recipes.each do |recipe| %>
             <p>
-                <li><%= link_to recipe.name, recipe_path(recipe) %></li>
+                <li><%= link_to recipe.name, recipe_path(recipe) %> </li>
+                <strong>by: <%= recipe.user.username %></strong> 
             </p>
         <% end %>
     </ul>

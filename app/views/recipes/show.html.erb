@@ -1,8 +1,8 @@
-<h2><%= @recipe.category.name %></h2>
+
+<br> Created on <%= created_date_of @recipe %>
+
 <h3><%= @recipe.name %> </h3>
-<p>
-    Created by: <%= @recipe.user.username %> on <%= created_date_of @recipe %>
-</p>
+
 <h3>Ingredients</h3>
 <ul>
     <% @recipe.recipe_ingredients.each do |rec_ing| %>
@@ -28,8 +28,8 @@
 <% @recipe.comments.each do |comment| %>
     <strong><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %>
     <% if comment.user == current_user %>
-        <%= link_to "Edit", edit_comment_path(comment) %>
-        <%= link_to "Delete", comment_path(comment), method: :delete, data: {confirm: "Are you sure?" } %>
+        <%= link_to "Edit", edit_comment_path(comment) %> 
+        <%= button_to "x", comment_path(comment), method: :delete, class: "destroy", data: {confirm: "Are you sure?" } %>
     <% end %> <br>
 <% end %>
 

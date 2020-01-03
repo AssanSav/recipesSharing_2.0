@@ -2,6 +2,9 @@
 <br> Created on <%= created_date_of @recipe %>
 
 <h3><%= @recipe.name %> </h3>
+<ul>
+    <li><strong>For: <%= pluralize(@recipe.number_of_persons, "person") %></strong></li>
+</ul>
 
 <h3>Ingredients</h3>
 <ul>

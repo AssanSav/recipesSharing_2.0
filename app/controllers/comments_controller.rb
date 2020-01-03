@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :find_comment, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!
   
   def create 
       @recipe = Recipe.find_by(id: params[:recipe_id])  

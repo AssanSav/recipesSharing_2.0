@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_12_28_174839) do
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.decimal "amount"
+    t.string "amount"
     t.integer "ingredient_id"
     t.integer "recipe_id"
     t.datetime "created_at", precision: 6, null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2019_12_28_174839) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "name"
+    t.integer "number_of_persons"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

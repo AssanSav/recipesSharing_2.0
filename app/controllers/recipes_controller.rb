@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show, :index]
+  
 
   def index
     @recipes = Recipe.list_by_category  
@@ -51,7 +51,7 @@ class RecipesController < ApplicationController
   end 
   
   def recipe_params
-    params.require(:recipe).permit(:name, :category_id, :recipe_ingredients_attributes => [:amount, :ingredient_attributes => [:name]], :directions_attributes => [:cooking_process])
+    params.require(:recipe).permit(:name, :number_of_persons, :category_id, :recipe_ingredients_attributes => [:amount, :ingredient_attributes => [:name]], :directions_attributes => [:cooking_process])
   end 
 
 end

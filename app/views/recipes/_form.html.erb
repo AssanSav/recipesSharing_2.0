@@ -1,7 +1,7 @@
 <%= form_for recipe do |f| %>
     <p>
-        <%= label_tag "Pick a Category" %> <br>
-        <%= f.collection_select :category_id, Category.all, :id, :name %>
+        <%= f.label "Category" %> <br>
+        <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "Pick a Category" %>
     </p>
     <p>
         <%= f.label :name %> <br>

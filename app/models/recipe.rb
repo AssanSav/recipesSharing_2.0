@@ -7,6 +7,7 @@ class Recipe < ApplicationRecord
 	has_many :ingredients, through: :recipe_ingredients
 	
 	validates :name, presence: true, uniqueness: {:scope => [:user_id, :category_id]}
+	validates :number_of_persons, presence: true
 	before_validation :name_capitalizer
 
 	accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank

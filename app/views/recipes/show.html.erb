@@ -29,7 +29,12 @@
 
 <h3>Comments</h3>
 <% @recipe.comments.each do |comment| %>
-    <strong><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %>
+    <% if comment.user.username.present? %>
+        <strong><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %>
+    <% else %> 
+        <strong><%= comment.user.name.capitalize %> said:</strong> <%= comment.content %>
+    <% end %> 
+
     <% if comment.user == current_user %>
         <%= link_to "Edit", edit_comment_path(comment) %> 
         <%= button_to "x", comment_path(comment), method: :delete, class: "destroy", data: {confirm: "Are you sure?" } %>
@@ -37,6 +42,7 @@
 <% end %>
 
 <%= render partial: "comments/form", locals: { comment: @recipe.comments.build } %>
+
 
 <% if @recipe.user == current_user %>
     <%= link_to "Back", recipes_path %> <br>

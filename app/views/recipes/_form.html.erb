@@ -1,33 +1,45 @@
 <%= form_for recipe do |f| %>
-    <p>
-        <%= f.label "Category" %> <br>
+    <div class="field">
+        <%= f.label "Category" %> 
         <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "Pick a Category" %>
-    </p>
-    <p>
-        <%= f.label :name %> <br>
+    </div>
+       
+    <div class="field">
+        <%= f.label "Add an Image" %> 
+        <%= f.file_field :image %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :name %> 
         <%= f.text_field :name, placeholder: "Enter a Recipe" %>
-    </p>
-    <p>
-        <%= f.label :number_of_persons %> <br>
+    </div>
+
+    <div class="field">
+        <%= f.label :number_of_persons %> 
         <%= f.number_field :number_of_persons, placeholder: "Enter a Number" %>
-    </p>
+    </div>
+    
     <fieldset>
         <legend>Ingredients</legend>
-        <%= f.fields_for :recipe_ingredients do |rec_ing_builder| %>
-        <%= rec_ing_builder.fields_for :ingredient do |ingr_builder| %>
-        <p>
-            <%= ingr_builder.text_field :name, placeholder: "Ingredient Name" %>
-        </p>
-        <% end %>
-        <p>
-            <%= rec_ing_builder.text_field :amount, step: :any, placeholder: "Amount" %>
-        </p>
-        <% end %>
-    </fieldset>
+            <%= f.fields_for :recipe_ingredients do |ri_builder| %>
+                <%= ri_builder.fields_for :ingredient do |ingr_builder| %>
+                    <div class="field">
+                        <%= ingr_builder.text_field :name, placeholder: "Ingredient Name" %>
+                    </div>
+                <% end %>
+                
+                <div class="field">
+                    <%= ri_builder.text_field :amount, placeholder: "Amount" %>
+                </div>
+            <% end %>
+     </fieldset>    
+        
     <%= f.fields_for :directions do |dir_builder| %>
-        <%= dir_builder.label :cooking_process %> <br>
-        <%= dir_builder.text_area :cooking_process, cols: "50", rows: "5" %>
-    <% end %> <br>
-    <br>
+        <div class="field">
+            <%= dir_builder.label :cooking_process %> <br>
+            <%= dir_builder.text_area :cooking_process, cols: "50", rows: "5" %>
+        </div>
+    <% end %>        
+    
     <%= f.submit %>
 <% end %>

@@ -32,6 +32,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'omniauth' 
 gem 'omniauth-facebook'
 gem 'devise'
+gem 'jquery-rails'
+gem 'cocoon'
 
 
 group :development, :test do

@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       if @comment.save 
         redirect_to recipe_path(@comment.recipe_id)
       else
-        render "recipes/show"
+        redirect_to recipe_path(@recipe)
       end
   end
 

@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
-gem 'devise'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2'
 # Use sqlite3 as the database for Active Record
@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'omniauth' 
+gem 'omniauth-facebook'
+gem 'devise'
+
 
 group :development, :test do
   gem 'dotenv-rails'

@@ -2,38 +2,6 @@
 
 <h1>Create A New Recipe</h1>
 
-<%= form_for @recipe do |f| %>
-    <p>
-        <%= label_tag "Pick a Category" %> <br>
-        <%= f.collection_select :category_id, Category.all, :id, :name %>
-    </p>
-    <p>
-        <%= f.label :name %> <br>
-        <%= f.text_field :name, placeholder: "Enter a Recipe" %>
-    </p>
-    <p>
-        <%= f.label :number_of_persons %> <br>
-        <%= f.number_field :number_of_persons, placeholder: "Enter a Number" %>
-    </p>
-    <fieldset>
-        <legend>Ingredients</legend>
-            <%= f.fields_for :recipe_ingredients do |rec_ing_builder| %>
-                <%= rec_ing_builder.fields_for :ingredient do |ingr_builder| %>
-                    <p>
-                        <%= ingr_builder.text_field :name, placeholder: "Ingredient Name" %>
-                    </p>
-                <% end %>
-                <p>
-                    <%= rec_ing_builder.text_field :amount, step: :any, placeholder: "Amount" %>
-                </p>
-            <% end %>
-    </fieldset>
-    <%= f.fields_for :directions, @recipe.directions.build do |dir_builder| %>
-        <%= dir_builder.label :cooking_process, cols: 30, rows: 2 %> <br>
-        <%= dir_builder.text_area :cooking_process %>
-    <% end %> <br>
-    <br>
-    <%= f.submit %>
-<% end %>
+<%= render partial: "form", locals: {recipe: @recipe} %>
 
 <%= link_to "Back", recipes_path %> <br>

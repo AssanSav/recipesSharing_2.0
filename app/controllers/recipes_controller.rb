@@ -8,6 +8,7 @@ class RecipesController < ApplicationController
 
   def new 
     @recipe = Recipe.new 
+    @recipe.directions.build
     2.times do 
         @recipe.recipe_ingredients.build.build_ingredient
     end
@@ -51,7 +52,7 @@ class RecipesController < ApplicationController
   end 
   
   def recipe_params
-    params.require(:recipe).permit(:name, :number_of_persons, :category_id, :recipe_ingredients_attributes => [:amount, :ingredient_attributes => [:name]], :directions_attributes => [:cooking_process])
+    params.require(:recipe).permit(:name, :number_of_persons, :category_id, :recipe_ingredients_attributes => [:id, :amount, :ingredient_attributes => [:id, :name]], :directions_attributes => [:id, :cooking_process])
   end 
 
 end

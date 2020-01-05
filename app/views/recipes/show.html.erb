@@ -36,10 +36,7 @@
     <% end %> <br>
 <% end %>
 
-<%= form_for [@recipe, Comment.new] do |f| %>
-    <%= f.text_area :content %>
-    <%= f.submit "Add Comment" %>
-<% end %>
+<%= render partial: "comments/form", locals: { comment: @recipe.comments.build } %>
 
 <% if @recipe.user == current_user %>
     <%= link_to "Back", recipes_path %> <br>

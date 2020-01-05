@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: 'page#home'
-  devise_for :users
+  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
   
   resources :directions
   resources :recipe_ingredients

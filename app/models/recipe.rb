@@ -4,7 +4,7 @@ class Recipe < ApplicationRecord
 	belongs_to :category
 	has_many :directions 
 	has_many :comments
-	has_many :recipe_ingredients
+	has_many :recipe_ingredients, dependent: :destroy
 	has_many :ingredients, through: :recipe_ingredients
 	
 	validates :name, presence: true, uniqueness: {:scope => [:user_id, :category_id]}

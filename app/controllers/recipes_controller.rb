@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
   def new 
     @recipe = Recipe.new 
     @recipe.directions.build
-    2.times do 
+    5.times do 
         @recipe.recipe_ingredients.build.build_ingredient
     end
   end 

@@ -1,11 +1,14 @@
 
 
 <% @recipes.each do |category, recipes| %>
-    <h2 style="color: saddlebrown;"><%= category.name if category %> category: <%= pluralize(category.recipes.count, "Recipe") %></h2>
+    <h2 style="color: red;"><%= category.name if category %> category: <%= pluralize(category.recipes.count, "Recipe") %></h2>
     <ul>
         <% recipes.each do |recipe| %>
             <p>
                 <li><%= link_to recipe.name, recipe_path(recipe) %> </li>
+                <% if recipe.image.attached? %>
+                    <image src="<%=(url_for(recipe.image)) %>">
+                <% end %> <br>
                 <strong>by: <%= mail_to recipe.user.email %></strong> 
             </p>
         <% end %>

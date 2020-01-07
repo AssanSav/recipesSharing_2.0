@@ -6,8 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Category.create(name: "Vegan")
 Category.create(name: "Vegetarian")
-Category.create(name: "French Recipes")
-Category.create(name: "Africain Recipes")
-Ingredient.create(name: "beef")
+Category.create(name: "American")
+Category.create(name: "French")
+Category.create(name: "African")
+Category.create(name: "Chinesse")
+Category.create(name: "Mexican")
+

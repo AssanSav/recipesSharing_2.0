@@ -1,6 +1,6 @@
 <%= form_for recipe do |f| %>
     <div class="field">
-        <%= f.label "Category" %> 
+        <%= f.label "Category" %> <br>
         <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "Pick a Category" %>
     </div>
        

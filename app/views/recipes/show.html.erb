@@ -2,16 +2,17 @@
 <br> Created on <%= created_date_of @recipe %>
 
 
-<h3><%= @recipe.name %> </h3>
+<h3 style="color: salmon;"><%= @recipe.name %> </h3>
 
 <% if @recipe.image.attached? %>
     <image src="<%=(url_for(@recipe.image)) %>">
 <% end %>
+
 <ul>
-    <li><strong>For: <%= pluralize(@recipe.number_of_persons, "person") %></strong></li>
+    <li><strong>Servings: <%= @recipe.number_of_persons%></strong></li>
 </ul>
 
-<h3>Ingredients</h3>
+<h3 style="color: salmon;">Ingredients</h3>
 <ul>
     <% @recipe.recipe_ingredients.each do |rec_ing| %>
     <table>
@@ -25,7 +26,7 @@
     <% end %>
 </ul>
 
-<h3>Cooking Directions</h3>
+<h3 style="color: salmon;">Cooking Directions</h3>
 <% @recipe.directions.each do |dir| %> 
 <p>
     <%= dir.cooking_process %> 
@@ -35,9 +36,9 @@
 <h3>Comments</h3>
 <% @recipe.comments.each do |comment| %>
     <% if comment.user.username.present? %>
-        <strong><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %>
+        <strong style="color: slategrey;"><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %>
     <% else %> 
-        <strong><%= comment.user.name.capitalize %> said:</strong> <%= comment.content %>
+        <strong style="color: slategrey;"><%= comment.user.name.capitalize  %> said:</strong> <%= comment.content %>
     <% end %> 
 
     <% if comment.user == current_user %>
@@ -48,8 +49,11 @@
 
 <%= render partial: "comments/form", locals: { comment: @recipe.comments.build } %>
 
-
-<% if @recipe.user == current_user %>
+<% if current_user.admin == true %>
+    <%= link_to "Back", recipes_path %> <br>
+    <%= link_to "Edit", edit_recipe_path(@recipe) %> <br>
+    <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" } %> <br>
+<% elsif @recipe.user == current_user %>
     <%= link_to "Back", recipes_path %> <br>
     <%= link_to "Edit", edit_recipe_path(@recipe) %> <br>
     <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" } %> <br>

@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
-  before_action :find_comment, only: [:edit, :update, :destroy]
+  before_action :set_recipe, only: [:create, :edit, :update, :destroy]
+  before_action :set_comment, only: [:edit, :update, :destroy]
   
   def create 
-      @recipe = Recipe.find_by(id: params[:recipe_id])  
       @comment = current_user.comments.build(comment_params)
       @comment.recipe_id = @recipe.id
       if @comment.save 
@@ -32,9 +32,12 @@ class CommentsController < ApplicationController
   
   private 
 
-  def find_comment 
-    @recipe = Recipe.find_by(params[:recipe_id])
+  def set_comment 
     @comment = Comment.find_by_id(params[:id])
+  end
+
+  def set_recipe
+    @recipe = Recipe.find_by(params[:recipe_id])
   end
 
   def comment_params

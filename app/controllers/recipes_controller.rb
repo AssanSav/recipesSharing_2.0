@@ -1,14 +1,12 @@
 class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
   
-
   def index
-    @recipes = Recipe.list_by_category  
+    @recipes = Recipe.query(params[:query])
   end 
 
   def new 
     @recipe = Recipe.new 
-    @recipe.directions.build
     5.times do 
         @recipe.recipe_ingredients.build.build_ingredient
     end
@@ -52,7 +50,7 @@ class RecipesController < ApplicationController
   end 
   
   def recipe_params
-    params.require(:recipe).permit(:name, :image, :number_of_persons, :category_id, :recipe_ingredients_attributes => [:id, :amount, :ingredient_attributes => [:id, :name]], :directions_attributes => [:id, :cooking_process])
+    params.require(:recipe).permit(:name, :directions, :image, :number_of_persons, :category_id, :recipe_ingredients_attributes => [:id, :amount, :ingredient_attributes => [:id, :name]])
   end 
 
 end

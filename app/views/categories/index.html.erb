@@ -1,7 +1,16 @@
 <h1>All Categories</h1>
+<%= link_to "Back", recipes_path %>
 
-<ol>
-    <% @categories.each do |category| %>
-     <li><%= link_to category.name, category_recipes_path(category) %></li>
+<% @categories_recipes.each do |category, recipes| %>
+<h2 style="color: red;"><%= category.name if category %></h2> 
+<strong>total of: <%= pluralize(category.recipes.count, "Recipe") %></strong> 
+<ul>
+    <% recipes.each do |recipe| %>
+    <p>
+        <li><%= link_to recipe.name, recipe_path(recipe) %> </li>
+        <%= link_to category.name, category_recipes_path(recipe.category_id) %> <br>
+        <strong>by: <%= mail_to recipe.user.email %></strong>
+    </p>
     <% end %>
-</ol>
+</ul>
+<% end %>

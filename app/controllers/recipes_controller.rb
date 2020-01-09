@@ -7,8 +7,8 @@ class RecipesController < ApplicationController
 
   def new 
     @recipe = Recipe.new 
-    5.times do 
-        @recipe.recipe_ingredients.build.build_ingredient
+    7.times do 
+      @ingre =  @recipe.recipe_ingredients.build.build_ingredient
     end
   end 
 
@@ -17,7 +17,7 @@ class RecipesController < ApplicationController
     if @recipe.save
         redirect_to recipe_path(@recipe.id), notice: "Recipe Successfully Created" 
     else 
-      render :new 
+      render :new
     end 
   end 
 

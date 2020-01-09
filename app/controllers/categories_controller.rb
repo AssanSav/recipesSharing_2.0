@@ -2,7 +2,6 @@ class CategoriesController < ApplicationController
   before_action :find_category, only: [:show, :edit, :update]
 
   def index
-    #binding.pry
     @categories_recipes = Recipe.list_by_category 
   end
 

@@ -13,6 +13,7 @@
         <% end %> <br>
         <strong>by: <%= mail_to recipe.user.email %></strong>
     </p>
+    <strong><%= link_to pluralize(recipe.comments.count, "Review"), recipe_comments_path(recipe) %></strong>
 </ul>
 <% end %>
 

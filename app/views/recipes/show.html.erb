@@ -47,11 +47,8 @@
 
 <%= render partial: "comments/form", locals: { comment: @recipe.comments.build } %>
 
-<% if current_user.admin == true %>
-    <%= link_to "Back", recipes_path %> <br>
-    <%= link_to "Edit", edit_recipe_path(@recipe) %> <br>
-    <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" } %> <br>
-<% elsif @recipe.user == current_user %>
+
+<% if @recipe.user == current_user %>
     <%= link_to "Back", recipes_path %> <br>
     <%= link_to "Edit", edit_recipe_path(@recipe) %> <br>
     <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Are you sure?" } %> <br>

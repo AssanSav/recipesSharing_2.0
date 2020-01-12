@@ -1,6 +1,11 @@
 class CommentsController < ApplicationController
-  before_action :set_recipe, only: [:create, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:index, :create, :edit, :update, :destroy, ]
   before_action :set_comment, only: [:edit, :update, :destroy]
+
+  def index
+    @comments = @recipe.comments.group_by_user
+
+  end
   
   def create 
       @comment = current_user.comments.build(comment_params)
@@ -26,6 +31,7 @@ class CommentsController < ApplicationController
   end 
 
   def destroy
+    #binding.pry
     @comment.destroy
     redirect_to recipe_path(@recipe), notice: "Comment Successfully Deleted"
   end 

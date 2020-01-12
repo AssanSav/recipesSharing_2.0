@@ -18,7 +18,7 @@ class Recipe < ApplicationRecord
 	def self.list_by_category 
 		all.group_by(&:category)
 	end
-
+	
 	private 
 
 	def name_capitalizer 

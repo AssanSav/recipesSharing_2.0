@@ -23,7 +23,7 @@ class Recipe < ApplicationRecord
 	def self.desc_listing
 		all.order(created_at: :desc)
 	end
-	
+
 	private 
 
 	def name_capitalizer 

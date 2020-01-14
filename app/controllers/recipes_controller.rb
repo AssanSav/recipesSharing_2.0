@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
   
   def index
-    @recipes = Recipe.query(params[:query])
+    @recipes = Recipe.query(params[:query]).desc_listing
   end 
 
   def new 

@@ -1,10 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :set_recipe, only: [:index, :create, :edit, :update, :destroy, ]
+  before_action :set_recipe, only: [:index, :create, :edit, :update, :destroy, :new]
   before_action :set_comment, only: [:edit, :update, :destroy]
 
   def index
     @comments = @recipe.comments.group_by_user
-
   end
   
   def create 
@@ -33,7 +32,7 @@ class CommentsController < ApplicationController
   def destroy
     #binding.pry
     @comment.destroy
-    redirect_to recipe_path(@recipe), notice: "Comment Successfully Deleted"
+    redirect_to recipe_path(@recipe.id), notice: "Comment Successfully Deleted"
   end 
   
   private 
@@ -43,7 +42,7 @@ class CommentsController < ApplicationController
   end
 
   def set_recipe
-    @recipe = Recipe.find_by(params[:recipe_id])
+    @recipe = Recipe.find_by_id(params[:recipe_id]) || Recipe.find_by(params[:recipe_id])
   end
 
   def comment_params

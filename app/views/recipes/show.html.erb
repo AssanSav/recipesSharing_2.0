@@ -2,7 +2,7 @@
 <br> Created on <%= created_date_of @recipe %>
 
 
-<h3 style="color: salmon;"><%= @recipe.name %> </h3>
+<h3 style="color: red" style="color: red;"><%= @recipe.name %> </h3>
 
 <% if @recipe.image.attached? %>
     <image src="<%=(url_for(@recipe.image)) %>">
@@ -12,7 +12,7 @@
     <li><strong>Servings: <%= @recipe.number_of_persons%></strong></li>
 </ul>
 
-<h3 style="color: salmon;">Ingredients</h3>
+<h3 style="color: red">Ingredients</h3>
 <ul>
     <% @recipe.recipe_ingredients.each do |rec_ing| %>
     <table>
@@ -26,23 +26,29 @@
     <% end %>
 </ul>
 
-<h3 style="color: salmon;">Cooking Directions</h3>
+<h3 style="color: red">Cooking Directions</h3>
 <p>
     <%= @recipe.directions %> 
 </p>
 
-<h3>Comments</h3>
+<h3 style="color: red;">Comments</h3>
 <% @recipe.comments.each do |comment| %>
     <% if comment.user.username.present? %>
-        <strong style="color: slategrey;"><%= comment.user.username.capitalize %> said:</strong> <%= comment.content %>
+        <strong><%= comment.user.username.capitalize %></strong> 
+        <ul>
+            <li> <%= comment.content %></li>
+        </ul>
     <% else %> 
-        <strong style="color: slategrey;"><%= comment.user.name.capitalize  %> said:</strong> <%= comment.content %>
+        <strong><%= comment.user.name.capitalize  %></strong> <br>
+        <ul>
+            <li><%= comment.content %></li>
+        </ul> 
     <% end %> 
 
     <% if comment.user == current_user %>
         <%= link_to "Edit", edit_comment_path(comment) %> 
         <%= button_to "x", comment_path(comment), method: :delete, class: "destroy", data: {confirm: "Are you sure?" } %>
-    <% end %> <br>
+    <% end %> 
 <% end %>
 
 <%= render partial: "comments/form", locals: { comment: @recipe.comments.build } %>

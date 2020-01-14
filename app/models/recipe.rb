@@ -19,6 +19,9 @@ class Recipe < ApplicationRecord
 		all.group_by(&:category)
 	end
 	
+	def self.desc_listing
+		all.order(created_at: :desc)
+	end
 	private 
 
 	def name_capitalizer 

@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :find_category, only: [:show, :edit, :update]
+  before_action :redirect_unless_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @categories_recipes = Recipe.list_by_category 
@@ -41,4 +42,10 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end 
+
+  private 
+
+  def redirect_unless_admin
+    redirect_to categories_path unless current_user.admin 
+  end
 end

@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
   end
 
   def set_recipe
-    @recipe = Recipe.find_by_id(params[:recipe_id]) #|| Recipe.find_by(params[:recipe_id])
+    @recipe = Recipe.find_by_id(params[:recipe_id]) 
   end
 
   def comment_params

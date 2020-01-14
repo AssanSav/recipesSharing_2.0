@@ -11,6 +11,7 @@ class Recipe < ApplicationRecord
 	validates :number_of_persons, presence: true
 	validates :directions, presence: true 
 	before_validation :name_capitalizer
+
 	scope :query, -> (name) { where("name like ?", "#{name}%")}
 
 	accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank
@@ -22,6 +23,7 @@ class Recipe < ApplicationRecord
 	def self.desc_listing
 		all.order(created_at: :desc)
 	end
+	
 	private 
 
 	def name_capitalizer 

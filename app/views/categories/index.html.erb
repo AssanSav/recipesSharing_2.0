@@ -1,15 +1,31 @@
+<% if current_user.admin %>
+    <%= link_to "New category", new_category_path %>
+<% end %>
+
+<% @categories.each.with_index(1) do |category, index| %>
+    <% if current_user.admin %>
+        <ul>
+            <li><%= index %> <strong><%= category.name %></strong></li>
+        </ul>
+        <%= link_to "Edit", edit_category_path(category) %>
+        <%= link_to "Delete", category_path(category), method: :delete %>
+    <% end %>
+<% end %> <br> <br>
+
+
 
 <%= link_to "Back", recipes_path %>
 
 <% @categories_recipes.each do |category, recipes| %>
-<h2 style="color: red;"><%= category.name if category %></h2> 
-<strong>Total: <%= pluralize(category.recipes.count, "Recipe") %></strong> 
-<ul>
-    <% recipes.each do |recipe| %>
-    <p>
-        <li><%= link_to recipe.name, category_recipe_path(recipe.category_id, recipe) %> </li>
-        <strong>by: <%= mail_to recipe.user.email %></strong>
-    </p>
-    <% end %>
-</ul>
+
+    <h2 style="color: red;"><%= category.name if category %></h2> 
+    <strong>Total: <%= pluralize(category.recipes.count, "Recipe") %></strong> 
+    <ul>
+        <% recipes.each do |recipe| %>
+            <p>
+                <li><%= link_to recipe.name, category_recipe_path(recipe.category_id, recipe) %> </li>
+                <strong>by: <%= mail_to recipe.user.email %></strong>
+            </p>
+        <% end %>
+    </ul>
 <% end %>

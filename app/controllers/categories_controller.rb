@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   before_action :redirect_unless_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
+    @categories = Category.all
     @categories_recipes = Recipe.list_by_category 
   end
 
@@ -19,8 +20,7 @@ class CategoriesController < ApplicationController
     end
   end 
 
-  def show 
-    @categories = Category.all
+  def show  
   end
 
   def edit 
@@ -42,7 +42,7 @@ class CategoriesController < ApplicationController
   private 
 
   def find_category 
-    @category = Category.find_by_id(params[:id])
+    @category = Category.find_by(id: params[:id])
   end
 
   def category_params

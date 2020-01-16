@@ -7,7 +7,13 @@ class RecipeIngredient < ApplicationRecord
     accepts_nested_attributes_for :ingredient
     
     def ingredient_attributes=(ingredients_attributes)
-        self.ingredient = Ingredient.find_or_create_by(ingredients_attributes)
+        ingredients_attributes.values.each do |ingr_attributes|
+            if !ingr_attributes.present? 
+                self.ingredient.update(name: ingr_attributes)
+            else
+                self.ingredient = Ingredient.find_or_create_by(name: ingr_attributes)
+            end
+        end
     end
 
 end

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ingredients/edit'
+  get 'ingredients/update'
   root to: 'page#home'
   devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
   

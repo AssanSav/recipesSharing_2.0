@@ -5,10 +5,8 @@
 <% @categories.each.with_index(1) do |category, index| %>
     <% if current_user.admin %>
         <ul>
-            <li><%= index %> <strong><%= category.name %></strong></li>
-        </ul>
-        <%= link_to "Edit", edit_category_path(category) %>
-        <%= link_to "Delete", category_path(category), method: :delete %>
+            <%= index %>- <strong><%= category.name %></strong> <%= link_to "Edit", edit_category_path(category) %> <%= link_to "Delete", category_path(category), method: :delete %>
+        </ul>              
     <% end %>
 <% end %> <br> <br>
 
@@ -24,7 +22,7 @@
         <% recipes.each do |recipe| %>
             <p>
                 <li><%= link_to recipe.name, category_recipe_path(recipe.category_id, recipe) %> </li>
-                <strong>by: <%= mail_to recipe.user.email %></strong>
+                <strong>by: <%= recipe.user.name || recipe.user.username %></strong>
             </p>
         <% end %>
     </ul>

@@ -126,7 +126,7 @@ body {
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: none;
+  border-radius: initial;
   background: #f1f1f1;
 }
 
@@ -140,7 +140,7 @@ body {
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: none;
+  border-radius: initial;
   background: #f1f1f1;
 }
 
@@ -155,5 +155,8 @@ input[type="checkbox"] {
 }
 label, input {
     vertical-align: top;
+    font-weight: bolder;
 }
+
+
 

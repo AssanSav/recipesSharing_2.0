@@ -1,9 +1,17 @@
 <%= form_tag recipes_path, method: :get do %>
 <p>
-    <%= text_field_tag :query, params[:query], placeholder: "Enter a Name" %>
+    <%= text_field_tag :find_recipes_by_name, params[:find_recipes_by_name], placeholder: "Search by Name" %>
     <%= submit_tag "Search", name: nil %>
 </p>
-<% end %> <br>
+<% end %> 
+<h4>Or</h4>
+<%= form_tag recipes_path, method: :get do %>
+<p>
+    <%= text_field_tag :find_recipes_by_serving, params[:find_recipes_by_serving], placeholder: "Search by Number" %>
+    <%= submit_tag "Search", name: nil %>
+</p>
+<% end %>
+
 
 <% @recipes.each do |recipe| %>
     <p>

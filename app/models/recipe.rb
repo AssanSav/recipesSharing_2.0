@@ -13,12 +13,33 @@ class Recipe < ApplicationRecord
 	validates :number_of_persons, presence: true
 	validates :directions, presence: true 
 	before_validation :name_capitalizer
+	validate :ingredient_names
 
 	scope :find_recipes_by_name, -> (name) { where("name like ?", "#{name}%")}
 	scope :find_recipes_by_serving, -> (number_of_persons) { where number_of_persons: number_of_persons }
 
-	accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank
+
+	def recipe_ingredients_attributes=(recipe_ingredients_hash)
+		recipe_ingredients_hash.values.each do |recipe_ingredient|
+			recipe = Recipe.find_by(id: recipe_ingredient[:recipe_id])
+			rec_ingredient = RecipeIngredient.find_by(id: recipe_ingredient[:id])
+			ingredient = Ingredient.find_by(id: recipe_ingredient[:ingredient_attributes][:id])
+			if recipe && rec_ingredient && ingredient
+				rec_ingredient.update(amount: recipe_ingredient[:amount])
+				ingredient.update(name: recipe_ingredient[:ingredient_attributes][:name])
+			else
+				self.recipe_ingredients.build(recipe_ingredient)
+			end
+		end
+	end
 	
+	def ingredient_names 
+		self.recipe_ingredients.map(&:ingredient_id)
+		if ingredient_ids != ingredient_ids.uniq
+			self.errors.add(:recipe_ingredients, "Ingredient Name appears only once")
+		end
+	end
+
 	def self.list_by_category 
 		all.group_by(&:category)
 	end
@@ -26,10 +47,6 @@ class Recipe < ApplicationRecord
 	def self.desc_listing
 		all.order(created_at: :desc)
 	end
-
-	# def self.servings_query(query)
-	# 	all.where("number_of_persons like ?", "#{query}%")
-	# end
 
 	private 
 

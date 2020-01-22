@@ -12,8 +12,8 @@ class Recipe < ApplicationRecord
 	validates :name, presence: true, uniqueness: {:scope => [:user_id, :category_id]}
 	validates :number_of_persons, presence: true
 	validates :directions, presence: true 
-	before_validation :name_capitalizer
 	validate :ingredient_names
+	before_validation :name_capitalizer
 
 	scope :find_recipes_by_name, -> (name) { where("name like ?", "#{name}%")}
 	scope :find_recipes_by_serving, -> (number_of_persons) { where number_of_persons: number_of_persons }
@@ -36,7 +36,7 @@ class Recipe < ApplicationRecord
 	def ingredient_names 
 		self.recipe_ingredients.map(&:ingredient_id)
 		if ingredient_ids != ingredient_ids.uniq
-			self.errors.add(:recipe_ingredients, "Ingredient Name appears only once")
+			self.errors.add(:recipe_ingredients, "Ingredient Name Should Appear Once!")
 		end
 	end
 

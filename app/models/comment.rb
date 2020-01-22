@@ -7,4 +7,5 @@ class Comment < ApplicationRecord
     def self.group_by_user
         all.group_by(&:user)
     end
+    
 end

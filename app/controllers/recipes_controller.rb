@@ -1,10 +1,13 @@
 class RecipesController < ApplicationController
   before_action :find_recipe, only: [:show, :edit, :update, :destroy]
-  
-  def index
-    @recipes = Recipe.query(params[:query]).desc_listing
-  end 
 
+  def index
+    @recipes = Recipe.filter(params.slice(:find_recipes_by_name, :find_recipes_by_serving)).desc_listing
+    if !@recipes.present?
+      redirect_to recipes_path, notice: "Record Not Found"
+    end
+  end 
+  
   def new 
     @recipe = Recipe.new 
     4.times do 
@@ -22,11 +25,11 @@ class RecipesController < ApplicationController
   end 
 
   def show
-    redirect_to recipes_path, notice: "Record not found!"  if @recipe.nil?
+    redirect_to recipes_path, notice: "Record not found!" if @recipe.nil?
   end 
 
   def edit 
-    redirect_to recipes_path, notice: "Record not found!"   if @recipe.nil?
+    redirect_to recipes_path, notice: "Record not found!" if @recipe.nil?
   end 
 
   def update 
@@ -50,7 +53,7 @@ class RecipesController < ApplicationController
   end 
   
   def recipe_params
-    params.require(:recipe).permit(:name, :directions, :image, :number_of_persons, :category_id, :recipe_ingredients_attributes => [:id, :amount, :ingredient_attributes => [:id, :name]])
+    params.require(:recipe).permit(:name, :directions, :image, :number_of_persons, :category_id, :recipe_ingredients_attributes => [:id, :recipe_id, :amount, :ingredient_attributes => [:id, :name]])
   end 
 
 end

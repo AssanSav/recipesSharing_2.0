@@ -1,0 +1,14 @@
+
+[1mFrom:[0m /mnt/c/Users/assane/dev/flatiron/labs/recipesSharing_2.0/app/models/recipe.rb @ line 25 Recipe#recipe_ingredients_attributes=:
+
+    [1;34m23[0m: [32mdef[0m [1;34mrecipe_ingredients_attributes=[0m(recipe_ingredients_hash)
+    [1;34m24[0m: 	recipe_ingredients_hash.each [32mdo[0m |key, recipe_ingredient| 
+ => [1;34m25[0m: 		binding.pry
+    [1;34m26[0m: 		[32mif[0m [1;34;4mRecipe[0m.find_by(recipe_ingredient[[33m:recipe_id[0m]) && [1;36mself[0m.recipe_ingredients.find_by([35mamount[0m: recipe_ingredient[[33m:amount[0m]) && [1;36mself[0m.ingredients.find_by([35mname[0m: recipe_ingredient[[31m[1;31m"[0m[31mingredient_attributes[1;31m"[0m[31m[0m][[33m:name[0m]) 
+    [1;34m27[0m: 			[1;36mself[0m.recipe_ingredients = [1;34;4mRecipeIngredient[0m.update(recipe_ingredient)
+    [1;34m28[0m: 		[32melse[0m
+    [1;34m29[0m: 			[1;36mself[0m.recipe_ingredients.build(recipe_ingredient)
+    [1;34m30[0m: 		[32mend[0m
+    [1;34m31[0m: 	[32mend[0m
+    [1;34m32[0m: [32mend[0m
+

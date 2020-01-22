@@ -23,6 +23,7 @@
     <fieldset>
         <legend><strong>Ingredients</strong></legend>
             <%= f.fields_for :recipe_ingredients do |ri_builder| %>
+                <%= ri_builder.hidden_field :recipe_id, value: recipe.id %>
                 
             <%= ri_builder.fields_for :ingredient do |ingr_builder| %> 
                     <div class="field">

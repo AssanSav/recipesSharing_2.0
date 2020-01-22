@@ -7,7 +7,7 @@
 <h4>Or</h4>
 <%= form_tag recipes_path, method: :get do %>
 <p>
-    <%= text_field_tag :find_recipes_by_serving, params[:find_recipes_by_serving], placeholder: "Search by Number" %>
+    <%= text_field_tag :find_recipes_by_serving, params[:find_recipes_by_serving], placeholder: "Search by Serving" %>
     <%= submit_tag "Search", name: nil %>
 </p>
 <% end %>

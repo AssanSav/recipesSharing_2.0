@@ -1,12 +1,12 @@
-<% if shared.errors.any? %>
+<% if recipe.errors.any? %>
 <div id="error_explanation">
     <h2>
-        <%= pluralize(shared.errors.count, "error") %>
-        prohibited this shared from being saved:
+        <%= pluralize(recipe.errors.count, "error") %>
+        prohibited this recipe from being saved:
     </h2>
 
     <ul>
-        <% shared.errors.full_messages.each do |msg| %>
+        <% recipe.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
         <% end %>
     </ul>

@@ -1,8 +1,9 @@
 # README
 Welcome To the Recipes Sharing Data Management System
     The main purpose of this app is to allow users to share food recipes among them,
-    users can only manipulate records they created themselves, comment on their own or somebody
-    else's record, send email to others users, browse recipes by categories or find them by servings or names,
+    users can only manipulate records they have created themselves, comment on their own or somebody
+    else's record, send email to others users, browse recipes by categories or find them by servings or names, 
+    see all reviews made by a specific user
     the app has some validations that goes against duplication, their is some meaningful flash messages all over 
     the app for the users best experiences
 

@@ -1,13 +1,13 @@
 <%= form_tag recipes_path, method: :get do %>
 <p>
-    <%= text_field_tag :find_recipes_by_name, params[:find_recipes_by_name], placeholder: "Search by Name" %>
+    <%= text_field_tag :find_recipes_by_name, params[:find_recipes_by_name], placeholder: "Search by Names" %>
     <%= submit_tag "Search", name: nil %>
 </p>
 <% end %> 
 <h4>Or</h4>
 <%= form_tag recipes_path, method: :get do %>
 <p>
-    <%= text_field_tag :find_recipes_by_serving, params[:find_recipes_by_serving], placeholder: "Search by Serving" %>
+    <%= text_field_tag :find_recipes_by_serving, params[:find_recipes_by_serving], placeholder: "Search by Servings" %>
     <%= submit_tag "Search", name: nil %>
 </p>
 <% end %>

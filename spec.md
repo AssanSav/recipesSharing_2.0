@@ -1,6 +1,6 @@
 Using Ruby on Rails for the project
  X Include at least one has_many relationship (x has_many y; e.g. User has_many Recipes)
-- user has_many :recipes 
+-user has_many :recipes 
 
  X Include at least one belongs_to relationship (x belongs_to y; e.g. Post belongs_to User)
     - recipes belongs_to :user 

@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.filter(params.slice(:find_recipes_by_name, :find_recipes_by_serving)).desc_listing
-    if !@recipes.present?
+    unless @recipes.present?
       redirect_to recipes_path, notice: "Record Not Found"
     end
   end 

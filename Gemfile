@@ -33,6 +33,7 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'cocoon'
 gem 'rename'
+gem "aws-sdk-s3", require: false
 
 
 

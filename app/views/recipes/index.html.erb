@@ -13,15 +13,16 @@
 <% end %>
 
 
-<% @recipes.each do |recipe| %>
-    <p>
-        <li><%= link_to recipe.name, recipe_path(recipe) %> </li>
-        <% if recipe.image.attached? %>
-            <image src="<%=(url_for(recipe.image)) %>">
-        <% end %> <br>
-        <strong>by: <%= mail_to recipe.user.email %></strong>
-    </p>
-    <strong><%= link_to pluralize(recipe.comments.count, "Review"), recipe_comments_path(recipe) %></strong>
-</ul>
-<% end %>
+<div class="row">
+    <% @recipes.each do |recipe| %>
+        <div class="column">
+            <%= link_to recipe.name, recipe_path(recipe) %> 
+            <% if recipe.image.attached? %>
+                <image src="<%=(url_for(recipe.image)) %>" style="width:100%;">
+            <% end %> 
+            <strong>by: <%= mail_to recipe.user.email %></strong> <br>
+            <strong><%= link_to pluralize(recipe.comments.count, "Review"), recipe_comments_path(recipe) %></strong>
+        </div>
+    <% end %>
+</div>
 

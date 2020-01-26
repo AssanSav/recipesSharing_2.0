@@ -5,7 +5,8 @@
 <% @categories.each.with_index(1) do |category, index| %>
     <% if current_user.admin %>
         <ul>
-            <%= index %>- <strong><%= category.name %></strong> <%= link_to "Edit", edit_category_path(category) %> <%= link_to "Delete", category_path(category), method: :delete %>
+            <%= index %>- <strong><%= category.name %></strong> <br>
+            <%= link_to "Edit", edit_category_path(category) %> <%= link_to "Delete", category_path(category), method: :delete %>
         </ul>              
     <% end %>
 <% end %> <br> <br>

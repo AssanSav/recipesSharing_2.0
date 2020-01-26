@@ -15,7 +15,7 @@ class Recipe < ApplicationRecord
 	validate :ingredient_names
 	before_validation :name_capitalizer
 
-	scope :find_recipes_by_name, -> (name) { where("name like ?", "#{name}%")}
+	scope :find_recipes_by_name, -> (name) { where("name like ?", "#{name.capitalize}%")}
 	scope :find_recipes_by_serving, -> (number_of_persons) { where number_of_persons: number_of_persons }
 
 

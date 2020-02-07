@@ -1,7 +1,7 @@
 <%= form_for recipe do |f| %>
     
     <div class="field">
-        <%= f.label "Categories" %> <br>
+        <%= f.label "CategorecIngres" %> <br>
         <%= f.collection_select :category_id, Category.all, :id, :name, prompt: "Pick a Category" %> 
     </div><br>
        
@@ -22,17 +22,15 @@
     
     <fieldset>
         <legend><strong>Ingredients</strong></legend>
-            <%= f.fields_for :recipe_ingredients do |ri_builder| %>
-                <%= ri_builder.hidden_field :recipe_id, value: recipe.id %>
-                
-            <%= ri_builder.fields_for :ingredient do |ingr_builder| %> 
+            <%= f.fields_for :recipe_ingredients do |recIngr_builder| %>
+                <%= recIngr_builder.hidden_field :recipe_id, value: recipe.id %>
+                <%= recIngr_builder.fields_for :ingredient do |ingr_builder| %> 
                     <div class="field">
                         <%= ingr_builder.text_field :name, placeholder: "Ingredient Name" %>
                     </div>
-                <% end %>
-                
+                <% end %>  
                 <div class="field">
-                    <%= ri_builder.text_field :amount, placeholder: "Quantity" %>
+                    <%= recIngr_builder.text_field :amount, placeholder: "Quantity" %>
                 </div>
             <% end %>
      </fieldset>    

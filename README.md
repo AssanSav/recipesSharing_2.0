@@ -1,29 +1,61 @@
 # README
-Welcome To the Recipes Sharing Data Management System
-    The main purpose of this app is to allow users to share food recipes among them,
-    users can only manipulate records they have created themselves, comment on their own or somebody
-    else's record, send email to others users, browse recipes by categories or find them by servings or names, 
-    see all reviews made by a specific user
-    the app has some validations that goes against duplication, their is some meaningful flash messages all over 
-    the app for the users best experiences
+## Welcome To the Recipes Sharing Data Management System
+The main purpose of this app is to allow users to share food recipes among them,
+users can only manipulate records they have created themselves, comment on their own or somebody
+else's record, send email to others users, browse recipes by categories or find them by servings or names, 
+see all reviews made by a specific user
+the app has some validations that goes against duplication, their is some meaningful flash messages all over 
+the app for the users best experiences
 
-* Ruby version '2.6.1'
+## Ruby version '2.6.1'
 
-* System dependencies
-    - gem 'rails', '~> 6.0.2'
+## System dependencies
+gem 'rails', '~> 6.0.2'
+gem 'puma', '~> 4.1'
+gem 'sass-rails', '>= 6'
+gem 'webpacker', '~> 4.0'
+gem 'turbolinks', '~> 5'
+gem 'jbuilder', '~> 2.7'
+gem 'bootsnap', '>= 1.4.2', require: false
 
-* Configuration
-    - Have Ruby install in your local terminal and use Linux or Mac
+gem 'omniauth' 
+gem 'omniauth-facebook'
+gem 'devise'
 
-* Deployment instructions
-    1- Fork and clone 
-    2- run bundle install
-    3- run rails server 
-    4- Go to http://localhost:3000/ on your browser
-    5- Signin using your Facebook account or create a new one
+
+group :development, :test do
+  gem 'sqlite3'
+  gem 'dotenv-rails'
+  gem 'rspec-rails'
+  gem 'pry-rails'
+end
+
+group :development do
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+group :production do 
+  gem 'pg'         
+end
+
+
+## Configuration
+- Have Ruby install in your local environment, use Linux or Mac or windows OS
+
+## Deployment instructions
+1. Fork and clone 
+2. run bundle install
+3. run rails server 
+4. Go to http://localhost:3000/ on your browser
+5. Signin using your Facebook account or create a new one
 
 * ...
-Authors © 2019 by AssaneSav
+## Authors © 2019 by AssaneSav
 
 License This project is licensed under the MIT License:
 

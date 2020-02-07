@@ -18,3 +18,5 @@ Category.create(name: "Ouick & easy")
 Category.create(name: "Seasonal")
 Category.create(name: "Speacial diets")
 
+
+

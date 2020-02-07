@@ -17,7 +17,7 @@ class Recipe < ApplicationRecord
 
 	scope :find_recipes_by_name, -> (name) { where("name like ?", "#{name.capitalize}%")}
 	scope :find_recipes_by_serving, -> (number_of_persons) { where number_of_persons: number_of_persons }
-
+	
 
 	def recipe_ingredients_attributes=(recipe_ingredients_hash)
 		recipe_ingredients_hash.values.each do |recipe_ingredient|
@@ -47,6 +47,11 @@ class Recipe < ApplicationRecord
 	def self.desc_listing
 		all.order(created_at: :desc)
 	end
+
+	def self.order_by_name
+		all.order(name: :asc)
+	end
+
 
 	private 
 

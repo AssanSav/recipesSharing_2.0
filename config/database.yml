@@ -23,3 +23,7 @@ test:
 production:
   <<: *default
   database: db/production.sqlite3
+
+# host: localhost 
+#   user: Assane 
+#   password: 1981

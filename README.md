@@ -48,9 +48,9 @@ end
 ## Deployment instructions
 1. Fork and clone 
 2. run bundle install
-3. run rails server 
+3. run rails s
 4. Go to http://localhost:3000/ on your browser
-5. Signin using your Facebook account or create a new one
+5. Signin using your Facebook account or create a new account
 
 * ...
 ## Authors © 2019 by AssaneSav

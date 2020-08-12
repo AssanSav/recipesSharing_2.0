@@ -115,7 +115,7 @@ test:
 production:
   <<: *default
   database: <%= ENV['DATABASE_URL'] %>
-  database: recipesSharing_2_production
+  # database: recipesSharing_2_production
   # username: lets_kari_to_the_next
   # password: <%= ENV['LETS_KARI_TO_THE_NEXT_DATABASE_PASSWORD'] %>
 

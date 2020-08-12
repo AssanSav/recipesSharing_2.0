@@ -23,10 +23,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'omniauth' 
 gem 'omniauth-facebook'
 gem 'devise'
+gem "pg"
 
 
 group :development, :test do
-  gem 'sqlite3'
+  # gem 'sqlite3'
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'pry-rails'
